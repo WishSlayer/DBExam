@@ -34,8 +34,10 @@ public class Application {
         // Groups
         LocalDate startDate1 = LocalDate.of(2021, Month.JANUARY, 20);
         LocalDate startDate2 = LocalDate.of(2021, Month.APRIL, 13);
-        Group group1 = new Group(mountain1, true, startDate1, 5);
-        Group group2 = new Group(mountain2, true, startDate2, 3);
+        LocalDate startDate3 = LocalDate.of(2022, Month.MARCH, 22);
+        GroupUp group1 = new GroupUp(mountain1, true, startDate1, 5);
+        GroupUp group2 = new GroupUp(mountain2, true, startDate2, 3);
+        GroupUp group3 = new GroupUp(mountain1, false, startDate3, 10);
 
         // Manager
         manager.getTransaction().begin();
@@ -48,9 +50,16 @@ public class Application {
         mountainDao.add(mountain1);
         mountainDao.add(mountain2);
         mountainDao.add(mountain3);
+        groupDao.add(group1);
+        groupDao.add(group2);
+        groupDao.add(group3);
         manager.getTransaction().commit();
 
         System.out.println(climberDao.getClimbersByAge(30, 80));
         System.out.println(mountainDao.getMountainsByCountry("Russia"));
+        System.out.println(groupDao.getGroupsByIsOpen(true));
+        System.out.println(groupDao.getGroupsByMountainName("Everest"));
+
+
     }
 }

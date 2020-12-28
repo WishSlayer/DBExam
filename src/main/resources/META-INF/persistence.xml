@@ -8,7 +8,7 @@
 
         <class>application.Climber</class>
         <class>application.Mountain</class>
-        <class>application.Group</class>
+        <class>application.GroupUp</class>
 
         <properties>
 

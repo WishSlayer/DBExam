@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public final class Group extends Identificator {
+public final class GroupUp extends Identificator {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Mountain mountain;
 
     @ManyToMany
-    @JoinTable(name = "climbers_go", joinColumns = @JoinColumn(name = "id_event"),
+    @JoinTable(name = "climb_events", joinColumns = @JoinColumn(name = "id_event"),
             inverseJoinColumns = @JoinColumn(name = "id_climber"))
     private List<Climber> climbersList = new ArrayList<>();
 
@@ -22,12 +22,13 @@ public final class Group extends Identificator {
     @Column(nullable = false)
     private LocalDate startDate;
 
+    @Column(nullable = false)
     private int durationDays;
 
     @Column(nullable = false)
     private LocalDate stopDate;
 
-    public Group(Mountain mountain, boolean isOpen, LocalDate startDate, int durationDays) {
+    public GroupUp(Mountain mountain, boolean isOpen, LocalDate startDate, int durationDays) {
         this.mountain = mountain;
         setOpen(isOpen);
         setStartDate(startDate);

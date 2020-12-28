@@ -15,7 +15,7 @@ public final class Climber extends Identificator {
     @Column(nullable = false, length = 3)
     private int climberAge;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "climbersList")
-    private List<Group> groupsList;
+    private List<GroupUp> groupsList;
 
     public Climber(String climberName, String climberAddress, int climberAge) {
         setClimberName(climberName);

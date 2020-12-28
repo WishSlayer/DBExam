@@ -1,13 +1,12 @@
 package application.dao;
 
 import application.Dao;
-import application.Group;
-import application.Mountain;
+import application.GroupUp;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class GroupDao implements Dao<Group> {
+public class GroupDao implements Dao<GroupUp> {
 
     private EntityManager manager;
 
@@ -16,20 +15,28 @@ public class GroupDao implements Dao<Group> {
     }
 
     @Override
-    public void add(Group group) {
+    public void add(GroupUp group) {
         manager.persist(group);
     }
 
     @Override
-    public void update(Group group) {
+    public void update(GroupUp group) {
         manager.merge(group);
     }
 
-    public List<Group> getGroupsByMountainName(String mountainName) {
+    public List<GroupUp> getGroupsByMountainName(String mountainName) {
         TypedQuery query = manager.createQuery(
-                "SELECT g FROM Group g WHERE g.mountainName = :mountainName", Mountain.class);
+                "SELECT g FROM GroupUp g WHERE g.mountain.mountainName = :mountainName", GroupUp.class);
         query.setParameter("mountainName", mountainName);
-        List<Group> groupList = (List<Group>) query.getResultList();
+        List<GroupUp> groupList = (List<GroupUp>) query.getResultList();
         return groupList;
+    }
+
+    public List<GroupUp> getGroupsByIsOpen(Boolean isOpen) {
+        TypedQuery query = manager.createQuery(
+                "SELECT g FROM GroupUp g WHERE g.isOpen = :isOpen", GroupUp.class);
+        query.setParameter("isOpen", isOpen);
+        List<GroupUp> groupList2 = (List<GroupUp>) query.getResultList();
+        return groupList2;
     }
 }

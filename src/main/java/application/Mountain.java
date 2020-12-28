@@ -15,7 +15,7 @@ public final class Mountain extends Identificator {
     @Column(nullable = false, length = 4)
     private int mountainHeight;
     @OneToMany(mappedBy = "mountain")
-    private List<Group> groupsListUp = new ArrayList<>();
+    private List<GroupUp> groupsListUp = new ArrayList<>();
 
     public Mountain(String mountainName, String mountainCountry, int mountainHeight) {
         setMountainName(mountainName);
