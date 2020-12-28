@@ -53,6 +53,10 @@ public final class Climber extends Identificator {
         this.climberAge = climberAge;
     }
 
+    public List<GroupUp> getClimberGroups() {
+        return groupsList;
+    }
+
     @Override
     public String toString() {
         return "Альпинист " + climberName + " (г. " + climberAddress + ", " + climberAge + " лет/года)";

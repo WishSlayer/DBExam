@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public final class GroupUp extends Identificator {
@@ -70,6 +71,29 @@ public final class GroupUp extends Identificator {
 
     public List<Climber> getClimbersList() { return climbersList; }
 
+    private boolean checkDates(Climber climber){
+        for (GroupUp group : climber.getClimberGroups()){
+            if (this.startDate.isAfter(group.startDate)
+                    && this.startDate.isBefore(group.stopDate)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void addClimber(Climber climber){
+        if (startDate.isAfter(LocalDate.now())) {
+            if (isOpen && checkDates(Objects.requireNonNull(climber))) {
+                climbersList.add(climber);
+                climber.getClimberGroups().add(this);
+                if (climbersList.size() >= 7) isOpen = false;
+            } else System.out.println("Приема в группу нет, добавить альпиниста " + climber.getClimberName() + " не возможно");
+        } else {
+            System.out.println("Группа уже закрыта!");
+            isOpen = false;
+        }
+    }
+
     @Override
     public String toString() {
         return "Group{" +
@@ -81,17 +105,5 @@ public final class GroupUp extends Identificator {
                 ", stopDate=" + stopDate +
                 '}';
     }
-
-    /*
-    public void setClimbersList(Climber name) {
-        if (isOpen()) {
-            if (getStopDate().isAfter(climbersList.)) {
-                climbersList.add(name);
-            }
-            else {
-                System.out.println("в это время вы еще в походе.");}
-        }
-    }
-    */
 
 }
