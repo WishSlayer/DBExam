@@ -71,17 +71,16 @@ public final class Group extends Identificator {
 
     public List<Climber> getClimbersList() { return climbersList; }
 
-    /* TODO: сделать проверку
+    /*
     public void setClimbersList(Climber name) {
         if (isOpen()) {
-            if (getStartDate().isAfter(test.getValid(name))) {
+            if (getStopDate().isAfter(climbersList.)) {
                 climbersList.add(name);
             }
             else {
                 System.out.println("в это время вы еще в походе.");}
         }
     }
-
-     */
+    */
 
 }
