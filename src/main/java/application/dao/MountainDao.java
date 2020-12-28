@@ -3,7 +3,7 @@ package application.dao;
 import application.Dao;
 import application.Mountain;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class MountainDao implements Dao<Mountain> {
@@ -25,7 +25,9 @@ public class MountainDao implements Dao<Mountain> {
     }
 
     public List<Mountain> getMountainsByCountry(String mountainCountry) {
-        Query query = manager.createQuery("SELECT g FROM Mountain g WHERE g.country = :mountainCountry");
+        TypedQuery query = manager.createQuery(
+                "SELECT g FROM Mountain g WHERE g.mountainCountry = :mountainCountry", Mountain.class);
+        query.setParameter("mountainCountry", mountainCountry);
         List<Mountain> mountainList = (List<Mountain>) query.getResultList();
         return mountainList;
     }

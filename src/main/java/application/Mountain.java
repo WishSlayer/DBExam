@@ -55,6 +55,6 @@ public final class Mountain extends Identificator {
 
     @Override
     public String toString() {
-        return "Гора: " + mountainName + ". Страна: " + mountainCountry + ", Высота: " + mountainHeight;
+        return "Гора " + mountainName + " (" + mountainCountry + ", " + mountainHeight + " м)";
     }
 }

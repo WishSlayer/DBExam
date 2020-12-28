@@ -3,7 +3,7 @@ package application.dao;
 import application.Climber;
 import application.Dao;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ClimberDao implements Dao<Climber> {
@@ -25,7 +25,10 @@ public class ClimberDao implements Dao<Climber> {
     }
 
     public List<Climber> getClimbersByAge(int from, int to) {
-        Query query = manager.createQuery("SELECT g FROM Climber g WHERE g.age >= :from AND g.age < :to");
+        TypedQuery<Climber> query = manager.createQuery(
+                "SELECT g FROM Climber g WHERE g.climberAge >= :from AND g.climberAge < :to", Climber.class);
+        query.setParameter("from", from);
+        query.setParameter("to", to);
         List<Climber> climberList = (List<Climber>) query.getResultList();
         return climberList;
     }

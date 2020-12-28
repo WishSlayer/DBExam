@@ -27,8 +27,6 @@ public final class Group extends Identificator {
     @Column(nullable = false)
     private LocalDate stopDate;
 
-    public Group() { }
-
     public Group(Mountain mountain, boolean isOpen, LocalDate startDate, int durationDays) {
         this.mountain = mountain;
         setOpen(isOpen);
@@ -70,6 +68,18 @@ public final class Group extends Identificator {
     public Mountain getMountain() { return mountain; }
 
     public List<Climber> getClimbersList() { return climbersList; }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "mountain=" + mountain +
+                ", climbersList=" + climbersList +
+                ", isOpen=" + isOpen +
+                ", startDate=" + startDate +
+                ", durationDays=" + durationDays +
+                ", stopDate=" + stopDate +
+                '}';
+    }
 
     /*
     public void setClimbersList(Climber name) {

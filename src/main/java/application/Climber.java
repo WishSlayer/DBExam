@@ -55,6 +55,6 @@ public final class Climber extends Identificator {
 
     @Override
     public String toString() {
-        return "Альпинист: " + climberName + ". Адрес: " + climberAddress + ", Возраст: " + climberAge;
+        return "Альпинист " + climberName + " (г. " + climberAddress + ", " + climberAge + " лет/года)";
     }
 }
